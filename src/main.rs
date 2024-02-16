@@ -34,7 +34,7 @@ pub mod Switchstate {
 
 fn main() -> Result<(), DynError> {
     let ctx = Context::new()?;
-    let node = ctx.create_node("controller_b", None, Default::default())?;
+    let node = ctx.create_node("injection_2023_b", None, Default::default())?;
 
     let selector = ctx.create_selector()?;
     let subscriber = node.create_subscriber::<sensor_msgs::msg::Joy>("joy", None)?;
@@ -55,7 +55,7 @@ fn worker(
     
 ) -> Result<(), DynError> {
     let mut p9n = p9n_interface::NintendoSwitchInterface::new(sensor_msgs::msg::Joy::new().unwrap());
-    let logger = Rc::new(Logger::new("controller_b"));
+    let logger = Rc::new(Logger::new("injection_2023_b"));
    
     
     selector.add_subscriber(

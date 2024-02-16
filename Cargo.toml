@@ -1,5 +1,5 @@
 [package]
-name = "controller_2023"
+name = "injection_2023_b"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,9 +7,9 @@ edition = "2021"
 
 [dependencies]
 safe_drive = "0.2"
-drobo_interfaces = { path = "/tmp/2023_main/drobo_interfaces" }
+drobo_interfaces = { path = "/tmp/2023_off_team_b_controller/drobo_interfaces" }
 
 [package.metadata.ros]
 msg = ["drobo_interfaces"]
-msg_dir = "/tmp/2023_main/"
+msg_dir = "/tmp/2023_off_team_b_controller/"
 safe_drive_version = "0.2"

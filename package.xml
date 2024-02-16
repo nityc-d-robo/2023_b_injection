@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>controller_2023</name>
+  <name>injection_2023_b</name>
   <version>0.0.0</version>
   <description>Controller in Rust</description>
   <maintainer email="sarukiti1891@gmail.com">sarukiti</maintainer>
