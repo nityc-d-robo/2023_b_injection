@@ -64,8 +64,8 @@ fn worker(
             p9n.set_joy_msg(_msg.get_owned().unwrap());
 
             if p9n.pressed_r2(){
-                send_pwm(0x04, 0, false, 400,&publisher, /* publisher */);
-                send_pwm(0x05, 0, true, 400,&publisher, /* publisher */);
+                send_pwm(0x04, 0, false, 435,&publisher, /* publisher */);
+                send_pwm(0x05, 0, true, 435,&publisher, /* publisher */);
                 pr_info!(logger, "injection run", );
             }
             if !p9n.pressed_r2(){
