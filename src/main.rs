@@ -64,20 +64,32 @@ fn worker(
             p9n.set_joy_msg(_msg.get_owned().unwrap());
 
             if p9n.pressed_zr(){
-                send_speed(0x04, 0, false, 50, 0,0,&publisher, /* publisher */);
-                send_speed(0x05, 0, true, 50, 0,0,&publisher, /* publisher */);
+                send_pwm(0x04, 0, false, 400,&publisher, /* publisher */);
+                send_pwm(0x05, 0, true, 400,&publisher, /* publisher */);
+                pr_info!(logger, "injection run", );
             }
             if !p9n.pressed_zr(){
-                send_speed(0x04, 0, false, 50, 0,0,&publisher, /* publisher */);
-                send_speed(0x05, 0, true, 50, 0,0,&publisher, /* publisher */);
+                send_pwm(0x04, 0, false, 0,&publisher, /* publisher */);
+                send_pwm(0x05, 0, true, 0,&publisher, /* publisher */);
+                pr_info!(logger, "injection stop", );
             }
         
             
-            if p9n.pressed_zr(){
-                send_speed(0x06, 0, true, 50, 90,0,&publisher, /* publisher */);
+            if p9n.pressed_r(){
+                send_pwm(0x07, 0, true, 800,&publisher, /* publisher */);
+                pr_info!(logger, "装填 閉じる", );
             }
-            if !p9n.pressed_zr(){
-                send_speed(0x06, 0, true, 0, 90,0,&publisher, /* publisher */);
+            if !p9n.pressed_r(){
+                send_pwm(0x07, 0, true, 0, &publisher, /* publisher */);
+                pr_info!(logger, "装填 stop", );
+            }
+            if p9n.pressed_l(){
+                send_pwm(0x07, 0, false, 800,&publisher, /* publisher */);
+                pr_info!(logger, "装填 開く", );
+            }
+            if !p9n.pressed_l(){
+                send_pwm(0x07, 0, false, 0,&publisher, /* publisher */);
+                pr_info!(logger, "装填 stop", );
             }
 
             
@@ -104,15 +116,14 @@ fn send_speed(_address:u32, _semi_id:u32,_phase:bool,_speed:u32,_angle:i32,_time
 
 }
 
-fn send_pwm(_address:u32, _semi_id:u32,_phase:bool,_power:u32,_angle:i32,_timeout:u16,publisher:&Publisher<MdLibMsg>){
+fn send_pwm(_address:u32, _semi_id:u32,_phase:bool,_power:u16,publisher:&Publisher<MdLibMsg>){
     let mut msg = drobo_interfaces::msg::MdLibMsg::new().unwrap();
     msg.address = _address as u8;
     msg.semi_id = _semi_id as u8;
     msg.mode = 2 as u8; //MotorLibのPWMモードに倣いました
     msg.phase = _phase as bool;
     msg.power = _power as u16;
-    msg.angle = _angle as i32;
-    msg.timeout = _timeout as u16;
+    
 
     publisher.send(&msg).unwrap()
 
