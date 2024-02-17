@@ -13,19 +13,19 @@ impl DualShock4Interface {
     pub fn set_joy_msg(&mut self, _msg: sensor_msgs::msg::Joy){
         self.msg = _msg;
     }
-    pub fn pressed_start(&self) -> bool {
+    pub fn pressed_PS(&self) -> bool {
         self.msg.buttons.as_slice()[BUTTONS_DUALSHOCK4::PS] == 1
     }
-    pub fn pressed_l(&self) -> bool {
+    pub fn pressed_l1(&self) -> bool {
         self.msg.buttons.as_slice()[BUTTONS_DUALSHOCK4::L1] == 1
     }
-    pub fn pressed_r(&self) -> bool {
+    pub fn pressed_r1(&self) -> bool {
         self.msg.buttons.as_slice()[BUTTONS_DUALSHOCK4::R1] == 1
     }
-    pub fn pressed_zl(&self) -> bool {
+    pub fn pressed_r2(&self) -> bool {
         self.msg.buttons.as_slice()[BUTTONS_DUALSHOCK4::R2] == 1
     }
-    pub fn pressed_zr(&self) -> bool {
+    pub fn pressed_l2(&self) -> bool {
         self.msg.buttons.as_slice()[BUTTONS_DUALSHOCK4::L2] == 1
     }
     pub fn pressed_dpad_left(&self) -> bool {

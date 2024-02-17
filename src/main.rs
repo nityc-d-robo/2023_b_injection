@@ -63,31 +63,31 @@ fn worker(
         Box::new(move |_msg| {
             p9n.set_joy_msg(_msg.get_owned().unwrap());
 
-            if p9n.pressed_zr(){
+            if p9n.pressed_r2(){
                 send_pwm(0x04, 0, false, 400,&publisher, /* publisher */);
                 send_pwm(0x05, 0, true, 400,&publisher, /* publisher */);
                 pr_info!(logger, "injection run", );
             }
-            if !p9n.pressed_zr(){
+            if !p9n.pressed_r2(){
                 send_pwm(0x04, 0, false, 0,&publisher, /* publisher */);
                 send_pwm(0x05, 0, true, 0,&publisher, /* publisher */);
                 pr_info!(logger, "injection stop", );
             }
         
             
-            if p9n.pressed_r(){
+            if p9n.pressed_r1(){
                 send_pwm(0x07, 0, true, 800,&publisher, /* publisher */);
                 pr_info!(logger, "装填 閉じる", );
             }
-            if !p9n.pressed_r(){
+            if !p9n.pressed_r1(){
                 send_pwm(0x07, 0, true, 0, &publisher, /* publisher */);
                 pr_info!(logger, "装填 stop", );
             }
-            if p9n.pressed_l(){
+            if p9n.pressed_l1(){
                 send_pwm(0x07, 0, false, 800,&publisher, /* publisher */);
                 pr_info!(logger, "装填 開く", );
             }
-            if !p9n.pressed_l(){
+            if !p9n.pressed_l1(){
                 send_pwm(0x07, 0, false, 0,&publisher, /* publisher */);
                 pr_info!(logger, "装填 stop", );
             }
