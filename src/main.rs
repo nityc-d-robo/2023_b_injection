@@ -1,5 +1,5 @@
 mod p9n_interface;
-mod pro_controller;
+mod ps4_dualshock4;
 use drobo_interfaces::msg::MdLibMsg;
 use safe_drive::{
     context::Context,
@@ -13,7 +13,7 @@ use safe_drive::{
 };
 use std::{rc::Rc, time::Duration};
 
-pub mod Switchstate {
+pub mod DealShock4state {
     pub const B: usize = 0;
     pub const A: usize = 1;
     pub const X: usize = 2;
@@ -54,7 +54,7 @@ fn worker(
     publisher:Publisher<MdLibMsg>
     
 ) -> Result<(), DynError> {
-    let mut p9n = p9n_interface::NintendoSwitchInterface::new(sensor_msgs::msg::Joy::new().unwrap());
+    let mut p9n = p9n_interface::DualShock4Interface::new(sensor_msgs::msg::Joy::new().unwrap());
     let logger = Rc::new(Logger::new("injection_2023_b"));
    
     
